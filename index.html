@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Dungeon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-container">
+        <h1 class="neon-title text-center mb-4">ASCII Dungeon</h1>
+
+        <div class="game-wrapper">
+            <!-- PAINEL ESQUERDO: ATRIBUTOS -->
+            <div class="panel left-panel">
+                <h3 class="panel-title">ATRIBUTOS</h3>
+                <div class="stat-info">
+                    Nível: <span id="player-level">1</span><br>
+                    XP: <span id="player-xp">0</span> / <span id="player-next-xp">100</span><br>
+                    Pts Livres: <span id="stat-points" class="highlight">0</span>
+                </div>
+                <hr class="neon-divider">
+                <div id="attributes-list"></div>
+            </div>
+
+            <!-- PAINEL CENTRAL -->
+            <div class="center-panel">
+
+                <!-- INIMIGO -->
+                <div id="enemy-ui" class="hidden">
+                    <div class="stat-label">Inimigo: <span id="enemy-name">Slime</span> Lv <span id="enemy-level">1</span></div>
+                    <div class="health-bar-container">
+                        <div id="enemy-hp-bar" class="health-bar enemy-hp"></div>
+                    </div>
+                    <div class="stat-label mt-1 text-danger">Ataque do Inimigo:</div>
+                    <div class="health-bar-container">
+                        <div id="enemy-attack-bar" class="attack-bar"></div>
+                    </div>
+                </div>
+
+                <!-- TELA DO JOGO -->
+                <div id="game-screen">
+                    <pre id="ascii-display"></pre>
+                    <div id="combat-sequence" class="hidden">
+                        <div class="sequence-title">DIGITE A SEQUÊNCIA:</div>
+                        <div id="arrow-sequence" class="arrows-display"></div>
+                    </div>
+                    <!-- GAME OVER overlay -->
+                    <div id="gameover-screen" class="hidden gameover-overlay">
+                        <div class="gameover-box">
+                            <div class="gameover-title">VOCÊ MORREU</div>
+                            <div class="gameover-sub">Nível <span id="go-level"></span> alcançado</div>
+                            <button class="btn-restart" onclick="restartGame()">JOGAR NOVAMENTE</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VIDA DO JOGADOR -->
+                <div id="player-ui">
+                    <div class="stat-label">Sua Vida: <span id="player-hp-text">100/100</span></div>
+                    <div class="health-bar-container">
+                        <div id="player-hp-bar" class="health-bar player-hp"></div>
+                    </div>
+                </div>
+
+                <!-- CONTROLES -->
+                <div class="controls-container">
+                    <div class="dpad">
+                        <div class="dpad-row"><button class="control-btn" id="btn-up">↑</button></div>
+                        <div class="dpad-row">
+                            <button class="control-btn" id="btn-left">←</button>
+                            <button class="control-btn" id="btn-down">↓</button>
+                            <button class="control-btn" id="btn-right">→</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAINEL DIREITO: INVENTÁRIO + LOG -->
+            <div class="panel right-panel">
+                <h3 class="panel-title">INVENTÁRIO</h3>
+
+                <div id="potion-box" class="potion-square" onclick="usePotion()">
+                    <div class="potion-icon">POÇÃO</div>
+                    <div class="potion-count">x<span id="potion-count">0</span></div>
+                    <div class="potion-hint">Cura 50 HP</div>
+                </div>
+
+                <hr class="neon-divider">
+                <ul id="inventory-list" class="inventory-list"></ul>
+
+                <hr class="neon-divider">
+                <h3 class="panel-title log-title">LOG</h3>
+                <ul id="message-log" class="message-log"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
